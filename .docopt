@@ -1,0 +1,18 @@
+odbc-cli-c: ODBC CLI
+
+Usage:
+  odbc-cli-c...
+  odbc-cli-c --output=<o>...
+  odbc-cli-c --command=<c>...
+  odbc-cli-c --command-file=<f>...
+  odbc-cli-c -c=<c> --params=<PARAMS>...
+  odbc-cli-c --help
+  odbc-cli-c --version
+
+Options:
+  -h --help                     Show this screen.
+  --version                     Show version.
+  -c=<c>, --command=<c>         Query to execute
+  -f=<c>, --command-file=<c>    Alternative query to execute from file or stdin
+  -p=<p>, --params=<p>          Parameters to provide sanitarily to SQL query
+  -o=<o>, --output=<o>          Output file. If not specified: will use `stdout`. If specified: will overwrite file.

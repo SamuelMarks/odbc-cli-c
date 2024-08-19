@@ -1,0 +1,8 @@
+{
+  "name": "odbc-cli-c",
+  "version-string": "0.0.1",
+  "port-version": 1,
+  "homepage": "https://github.com/SamuelMarks/odbc-cli-c",
+  "description": "ODBC CLI. Intended for simple use-cases: execution from file or literals; with proper sanitisation.",
+  "dependencies": ["c89stringutils"]
+}

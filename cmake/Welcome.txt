@@ -1,0 +1,3 @@
+ODBC CLI. Intended for simple use-cases: execution from file or literals; with proper sanitisation.
+
+This installs odbc-cli-c.
