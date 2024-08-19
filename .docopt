@@ -1,11 +1,11 @@
 odbc-cli-c: ODBC CLI
 
 Usage:
-  odbc-cli-c...
-  odbc-cli-c --output=<o>...
-  odbc-cli-c --command=<c>...
-  odbc-cli-c --command-file=<f>...
-  odbc-cli-c -c=<c> --params=<PARAMS>...
+  odbc-cli-c <DSN>
+  odbc-cli-c --output=<o> <DSN>
+  odbc-cli-c --command=<c> <DSN>
+  odbc-cli-c --command-file=<f> <DSN>
+  odbc-cli-c -c=<c> --params=<PARAMS> <DSN>
   odbc-cli-c --help
   odbc-cli-c --version
 

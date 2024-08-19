@@ -6,10 +6,10 @@ get_filename_component(EXEC_NAME "${CMAKE_CURRENT_SOURCE_DIR}" NAME)
 
 set(LIBRARY_NAME "lib${EXEC_NAME}")
 
-set(Header_Files "odbc_cli_c.h")
+set(Header_Files "odbc_cli_c.h" "odbc_runner.h")
 source_group("${LIBRARY_NAME} Header Files" FILES "${Source_Files}")
 
-set(Source_Files "odbc_cli_c.c")
+set(Source_Files "odbc_cli_c.c" "odbc_runner.c")
 source_group("${LIBRARY_NAME} Source Files" FILES "${Source_Files}")
 
 add_library("${LIBRARY_NAME}" STATIC "${Header_Files}" "${Source_Files}")
@@ -36,8 +36,7 @@ set_property(TARGET "${LIBRARY_NAME}" PROPERTY SOVERSION "1")
 # CLI #
 #######
 
-set(Cli_Source_Files "main.c"
-)
+set(Cli_Source_Files "odbc_runner.c" "main.c")
 source_group("${EXEC_NAME} Source Files" FILES "${Source_Files}")
 
 add_executable("${EXEC_NAME}" "${Cli_Source_Files}")
@@ -53,9 +52,13 @@ target_include_directories(
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-find_package(c89stringutils CONFIG REQUIRED)
 target_link_libraries("${EXEC_NAME}" PUBLIC "${LIBRARY_NAME}")
+
+find_package(c89stringutils CONFIG REQUIRED)
 target_link_libraries("${EXEC_NAME}" PRIVATE "c89stringutils" "c89stringutils_compiler_flags")
+
+find_package(unixodbc REQUIRED)
+target_link_libraries("${EXEC_NAME}" PRIVATE UNIX::odbc)
 
 set_target_properties("${EXEC_NAME}" PROPERTIES LINKER_LANGUAGE C)
 

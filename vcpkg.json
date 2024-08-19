@@ -4,5 +4,5 @@
   "port-version": 1,
   "homepage": "https://github.com/SamuelMarks/odbc-cli-c",
   "description": "ODBC CLI. Intended for simple use-cases: execution from file or literals; with proper sanitisation.",
-  "dependencies": ["c89stringutils"]
+  "dependencies": ["c89stringutils", "unixodbc"]
 }

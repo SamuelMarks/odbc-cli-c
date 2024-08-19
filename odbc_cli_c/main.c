@@ -12,6 +12,7 @@
 
 #include "odbc_cli_c.h"
 #include "odbc_cli_c_config.h"
+#include "odbc_runner.h"
 
 int main(int argc, char *argv[]) {
   int exit_code = EXIT_SUCCESS;
@@ -29,6 +30,7 @@ int main(int argc, char *argv[]) {
   }
 
   // assert(args != NULL);
+  run_tests(args->DSN);
 
   if (args->command != NULL)
     printf("args->command: \"%s\"", args->command);
