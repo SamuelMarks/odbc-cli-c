@@ -1,0 +1,41 @@
+# Docker Compose implementation that does 2 things:
+# 0. PostgreSQL (+ a nice web interface on :8081)
+# 1. Uses connection string in execution of odbc-cli-c
+
+services:
+  db:
+    image: postgres:16.4-alpine
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: rest_user
+      POSTGRES_PASSWORD: rest_pass
+      POSTGRES_DB: rest_db
+
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    environment:
+      DATABASE_URL: postgres://rest_user:rest_pass@db:5432/rest_db?sslmode=disable
+    depends_on:
+      - db
+
+  test_conn_with_odbc_cli_c:
+    image: odbc-cli-c:latest
+#    build:
+#      context: .
+#      dockerfile: "alpine.Dockerfile"
+    depends_on:
+      - db
+    entrypoint: [ "/bin/sh" ]
+    command:
+      - -c
+      - |
+        wait4x postgresql "$$DATABASE_URL" -- \
+        /opt/odbc-cli-c/bin/odbc_cli_c -c 'SELECT version();' "$$ODBC_CONN"
+    environment:
+      ODBC_CONN: "Driver={PostgreSQL UNICODE};Server=db;Port=5432;Database=rest_db;Uid=rest_user;Password=rest_pass;"
+      DATABASE_URL: "postgres://rest_user:rest_pass@db:5432/rest_db?sslmode=disable"

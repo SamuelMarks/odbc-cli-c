@@ -1,10 +1,10 @@
-#ifndef ODBC_INI_GEN_CONFIG_H
-#define ODBC_INI_GEN_CONFIG_H
+#ifndef ODBC_CLI_C_CONFIG_H
+#define ODBC_CLI_C_CONFIG_H
 
-#define ODBC_INI_GEN_VERSION_MAJOR @odbc_cli_c_VERSION_MAJOR@
-#define ODBC_INI_GEN_VERSION_MINOR @odbc_cli_c_VERSION_MINOR@
-#define ODBC_INI_GEN_VERSION_PATCH @odbc_cli_c_VERSION_PATCH@
-#define ODBC_INI_GEN_VERSION       "@odbc_cli_c_VERSION@"
+#define ODBC_CLI_C_VERSION_MAJOR @odbc_cli_c_VERSION_MAJOR@
+#define ODBC_CLI_C_VERSION_MINOR @odbc_cli_c_VERSION_MINOR@
+#define ODBC_CLI_C_VERSION_PATCH @odbc_cli_c_VERSION_PATCH@
+#define ODBC_CLI_C_VERSION       "@odbc_cli_c_VERSION@"
 
 /* Architecture (needed by MSVC) */
 
@@ -12,4 +12,4 @@
 #define _@TARGET_ARCH@_
 #endif /* !_@TARGET_ARCH@_ */
 
-#endif /* !ODBC_INI_GEN_CONFIG_H */
+#endif /* !ODBC_CLI_C_CONFIG_H */

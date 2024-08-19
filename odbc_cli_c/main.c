@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     return ENOMEM;
   } else {
     exit_code = docopt(args, argc, argv, /* help */ true,
-                       /* version */ ODBC_INI_GEN_VERSION);
+                       /* version */ ODBC_CLI_C_VERSION);
     if (exit_code != EXIT_SUCCESS) {
       free(args);
       return exit_code;

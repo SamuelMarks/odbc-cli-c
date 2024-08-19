@@ -57,8 +57,13 @@ target_link_libraries("${EXEC_NAME}" PUBLIC "${LIBRARY_NAME}")
 find_package(c89stringutils CONFIG REQUIRED)
 target_link_libraries("${EXEC_NAME}" PRIVATE "c89stringutils" "c89stringutils_compiler_flags")
 
-find_package(unixodbc REQUIRED)
-target_link_libraries("${EXEC_NAME}" PRIVATE UNIX::odbc)
+if (NOT DEFINED VCPKG_TOOLCHAIN OR NOT VCPKG_TOOLCHAIN)
+    find_package(ODBC REQUIRED)
+    target_link_libraries("${EXEC_NAME}" PRIVATE ODBC::ODBC)
+else ()
+    find_package(unixodbc REQUIRED)
+    target_link_libraries("${EXEC_NAME}" PRIVATE UNIX::odbc)
+endif ()
 
 set_target_properties("${EXEC_NAME}" PROPERTIES LINKER_LANGUAGE C)
 
